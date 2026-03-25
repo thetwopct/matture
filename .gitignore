@@ -1,0 +1,8 @@
+/.idea
+.DS_Store
+backups/
+node_modules/
+tax-toggle-for-woocommerce.code-workspace
+vendor
+.phpunit.cache/
+releases/

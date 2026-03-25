@@ -1,0 +1,84 @@
+name: Build and Package WordPress Plugin
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '**.dist'
+      - '**.neon'
+      - '.github/copilot-instructions.md'
+      - 'tests/**'
+      - 'utils/**'
+  pull_request:
+    branches:
+      - '*'
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '**.dist'
+      - '**.neon'
+      - '.github/copilot-instructions.md'
+      - 'tests/**'
+      - 'utils/**'
+
+# Cancel in-progress runs when a new workflow run is triggered
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      PLUGIN_MAIN_FILE: plugin-name.php
+      PLUGIN_NAME: plugin-name
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        sparse-checkout: |
+          includes
+          languages
+          views
+          plugin-name.php
+          readme.txt
+
+    - name: Lint readme.txt
+      uses: thetwopct/wporg-plugin-readme-linter@v1
+      with:
+        path: readme.txt
+        fail-on: error
+        
+    - name: Set plugin variables
+      run: |
+        VERSION=$(awk '/Version:/ {print $NF; exit}' $PLUGIN_MAIN_FILE)
+        echo "PLUGIN_NAME=$PLUGIN_NAME" >> $GITHUB_ENV
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        echo "Plugin Name: $PLUGIN_NAME"
+        echo "Version: $VERSION"
+
+    - name: Clean releases directory
+      run: rm -rf releases/*
+
+    - name: Create release directory
+      run: |
+        mkdir -p "releases/$PLUGIN_NAME/"
+
+    - name: Copy necessary files
+      run: |
+        cp -R includes languages views "$PLUGIN_MAIN_FILE" readme.txt "releases/$PLUGIN_NAME"
+
+    - name: Upload release artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.PLUGIN_NAME }}
+        path: releases/${{ env.PLUGIN_NAME }}
+        if-no-files-found: error
+        retention-days: 7
+        compression-level: 6
+        overwrite: true

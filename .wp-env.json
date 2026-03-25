@@ -1,0 +1,37 @@
+{
+    "$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/wp-env.json",
+    "core": null,
+    "plugins": [
+        "https://downloads.wordpress.org/plugin/woocommerce.zip",
+        "https://downloads.wordpress.org/plugin/query-monitor.zip",
+        "https://github.com/crstauf/query-monitor-extend/releases/latest/download/plugin.zip",
+        "https://downloads.wordpress.org/plugin/plugin-check.zip",
+        "https://downloads.wordpress.org/plugin/code-snippets.zip",
+		"https://downloads.wordpress.org/plugin/debug-log-manager.2.4.0.zip",
+		"https://downloads.wordpress.org/plugin/wp-mail-logging.zip",
+		"https://downloads.wordpress.org/plugin/advanced-custom-fields.zip",
+        "https://github.com/woocommerce/wc-smooth-generator/releases/download/1.2.0/wc-smooth-generator.zip",
+		"https://github.com/wp-privacy/wp-api-privacy/releases/latest/download/wp-api-privacy.zip",
+        "."
+    ],
+    "themes": [
+        "https://downloads.wordpress.org/theme/storefront.zip"
+    ],
+    "port": 8910,
+    "env": {
+        "development": {
+            "port": 8910
+        },
+        "tests": {
+            "port": 8911
+        }
+    },
+    "config": {
+        "SCRIPT_DEBUG": true,
+        "WP_DEBUG": true,
+        "WP_DEBUG_DISPLAY": true,
+        "WP_DISABLE_FATAL_ERROR_HANDLER": true,
+        "WP_ENVIRONMENT_TYPE": "local"
+    },
+    "phpVersion": "8.3"
+}
