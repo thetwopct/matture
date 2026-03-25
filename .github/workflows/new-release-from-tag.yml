@@ -1,0 +1,74 @@
+name: New release from tag
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    name: Build zip + attach to release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    env:
+      PLUGIN_NAME: matture
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: version
+        shell: bash
+        run: |
+          TAG_NAME="${GITHUB_REF_NAME}"
+          VERSION="${TAG_NAME#v}"
+
+          echo "TAG_NAME=$TAG_NAME" >> "$GITHUB_OUTPUT"
+          echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Install zip + rsync
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zip rsync
+
+      - name: Stage plugin files (dist)
+        shell: bash
+        run: |
+          rm -rf dist
+          mkdir -p "dist/${{ env.PLUGIN_NAME }}"
+
+          awk '
+            /^[[:space:]]*#/ { next }
+            /^[[:space:]]*$/ { next }
+            { print }
+          ' .distignore > /tmp/distignore
+
+          rsync -a \
+            --delete \
+            --exclude-from=/tmp/distignore \
+            --exclude="dist" \
+            --exclude=".git" \
+            ./ "dist/${{ env.PLUGIN_NAME }}/"
+
+      - name: Create zip
+        shell: bash
+        run: |
+          ZIP_NAME="${{ env.PLUGIN_NAME }}.${{ steps.version.outputs.VERSION }}.zip"
+          (cd dist && zip -r "../${ZIP_NAME}" "${{ env.PLUGIN_NAME }}/")
+          echo "ZIP_NAME=$ZIP_NAME" >> "$GITHUB_ENV"
+
+      - name: Create GitHub release + upload asset
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.TAG_NAME }}
+          files: ${{ env.ZIP_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
