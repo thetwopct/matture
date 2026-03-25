@@ -1,9 +1,11 @@
 <?xml version="1.0"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="tests/bootstrap.php"
-backupGlobals="false" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" cacheDirectory=".phpunit.cache">
+backupGlobals="false" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd">
   <testsuites>
     <testsuite name="main">
-      <directory prefix="test_" suffix=".php">./tests/</directory>
+      <file>./tests/Test_Block_Registration.php</file>
+      <file>./tests/Test_Hooks.php</file>
+      <file>./tests/Test_Rest.php</file>
     </testsuite>
   </testsuites>
 </phpunit>

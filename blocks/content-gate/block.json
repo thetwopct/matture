@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "matture/content-gate",
+  "version": "1.0.0",
+  "title": "Content Gate",
+  "category": "design",
+  "description": "Gate any content behind a tap-to-reveal overlay. Supports NSFW, Mature, Spoiler, and Trigger Warning modes.",
+  "keywords": ["mature", "nsfw", "spoiler", "trigger", "gate", "blur", "overlay", "reveal"],
+  "textdomain": "matture",
+  "supports": {
+    "html": false,
+    "spacing": { "margin": true, "padding": true },
+    "anchor": true
+  },
+  "attributes": {
+    "mode": {
+      "type": "string",
+      "default": "mature",
+      "enum": ["nsfw", "mature", "spoiler", "trigger"]
+    },
+    "warningLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "allowRehide": {
+      "type": "boolean",
+      "default": false
+    },
+    "blurIntensity": {
+      "type": "number",
+      "default": 20
+    },
+    "rememberReveal": {
+      "type": "boolean",
+      "default": false
+    },
+    "showIcon": {
+      "type": "boolean",
+      "default": false
+    },
+    "buttonLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "subLabel": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "providesContext": {
+    "matture/mode": "mode"
+  },
+  "editorScript": "file:./build/index.js",
+  "editorStyle": "file:./build/index.css",
+  "style": "file:./build/style-index.css",
+  "viewScript": "file:./build/view.js"
+}

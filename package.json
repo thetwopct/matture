@@ -1,0 +1,15 @@
+{
+  "name": "matture",
+  "version": "1.0.0",
+  "description": "Matture — content gate block for WordPress",
+  "scripts": {
+    "build": "wp-scripts build blocks/content-gate/index.js blocks/content-gate/view.js --output-path=blocks/content-gate/build",
+    "start": "wp-scripts start blocks/content-gate/index.js blocks/content-gate/view.js --output-path=blocks/content-gate/build",
+    "lint:js": "wp-scripts lint-js",
+    "lint:css": "wp-scripts lint-style",
+    "test:unit": "wp-scripts test-unit-js"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  }
+}

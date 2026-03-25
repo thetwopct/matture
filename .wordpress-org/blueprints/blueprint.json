@@ -1,0 +1,45 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/matture-demo/",
+	"preferredVersions": {
+		"php": "8.2",
+		"wp": "latest"
+	},
+	"phpExtensionBundles": [
+		"kitchen-sink"
+	],
+	"features": {
+		"networking": true
+	},
+	"steps": [
+		{
+			"step": "login",
+			"username": "admin",
+			"password": "password"
+		},
+		{
+			"step": "installTheme",
+			"themeData": {
+				"resource": "wordpress.org/themes",
+				"slug": "twentytwentyfive"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "url",
+				"url": "https://github.com/thetwopct/matture/archive/refs/heads/main.zip"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php\nrequire_once 'wordpress/wp-load.php';\n\n$image_url = 'https://live.staticflickr.com/2065/2376043711_76e6a98427_3k.jpg';\n$image_alt = 'Jeffro and Matt Mullenweg — Photo by ronalfy, CC BY 2.0, flickr.com/photos/ronalfy/2376043711/';\n$lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';\n\n$modes = [\n\t'nsfw'       => [ 'title' => 'NSFW Mode', 'label' => 'NSFW Content \xe2\x80\x94 Tap to reveal', 'button' => 'Reveal', 'sub' => '', 'blur' => 20 ],\n\t'mature'     => [ 'title' => 'Mature Mode', 'label' => \"Mature Content \xe2\x80\x94 Click to confirm you're 18+\", 'button' => 'I confirm I am 18+', 'sub' => '', 'blur' => 20 ],\n\t'spoiler'    => [ 'title' => 'Spoiler Mode', 'label' => 'Spoiler \xe2\x80\x94 Click to reveal', 'button' => 'Show Spoiler', 'sub' => '', 'blur' => 20 ],\n\t'trigger'    => [ 'title' => 'Trigger Warning Mode', 'label' => 'Trigger Warning \xe2\x80\x94 Click to continue', 'button' => 'Continue', 'sub' => 'This content discusses sensitive topics.', 'blur' => 20 ],\n];\n\n$blocks = \"<!-- wp:paragraph -->\\n<p>This page demonstrates all four Matture content gate modes. Each block hides content until the visitor chooses to reveal it. Click any overlay to see it in action.</p>\\n<!-- /wp:paragraph -->\\n\\n<!-- wp:separator -->\\n<hr class=\\\"wp-block-separator has-alpha-channel-opacity\\\"/>\\n<!-- /wp:separator -->\\n\\n\";\n\nforeach ( $modes as $mode => $cfg ) {\n\t$attrs = json_encode( [ 'mode' => $mode, 'warningLabel' => $cfg['label'], 'buttonLabel' => $cfg['button'], 'subLabel' => $cfg['sub'], 'blurIntensity' => $cfg['blur'], 'allowRehide' => true, 'rememberReveal' => false, 'showIcon' => true ] );\n\t$blocks .= \"<!-- wp:heading {\\\\\"level\\\\\":2} -->\\n<h2 class=\\\\\"wp-block-heading\\\\\">{$cfg['title']}</h2>\\n<!-- /wp:heading -->\\n\\n\";\n\t$blocks .= \"<!-- wp:paragraph -->\\n<p>{$lorem}</p>\\n<!-- /wp:paragraph -->\\n\\n\";\n\t$blocks .= \"<!-- wp:matture/content-gate {$attrs} -->\\n\";\n\t$blocks .= \"<!-- wp:image {\\\\\"sizeSlug\\\\\":\\\\\"large\\\\\",\\\\\"linkDestination\\\\\":\\\\\"none\\\\\"} -->\\n<figure class=\\\\\"wp-block-image size-large\\\\\"><img src=\\\\\"{$image_url}\\\\\" alt=\\\\\"{$image_alt}\\\\\"/></figure>\\n<!-- /wp:image -->\\n\";\n\t$blocks .= \"<!-- wp:paragraph -->\\n<p>{$lorem}</p>\\n<!-- /wp:paragraph -->\\n\";\n\t$blocks .= \"<!-- /wp:matture/content-gate -->\\n\\n\";\n\t$blocks .= \"<!-- wp:separator -->\\n<hr class=\\\\\"wp-block-separator has-alpha-channel-opacity\\\\\"/>\\n<!-- /wp:separator -->\\n\\n\";\n}\n\n$post_id = wp_insert_post( [ 'post_title' => 'Matture Demo', 'post_name' => 'matture-demo', 'post_content' => $blocks, 'post_status' => 'publish', 'post_type' => 'page' ] );\necho $post_id > 0 ? 'Demo page created: ' . $post_id : 'Failed';\n?>"
+		}
+	]
+}

@@ -1,0 +1,158 @@
+.matture-gate {
+	position: relative;
+	overflow: hidden;
+	min-height: 120px;
+	--matture-overlay-bg: unset;
+	--matture-blur-intensity: unset;
+	--matture-border-color: unset;
+	--matture-button-bg: transparent;
+	--matture-button-color: currentColor;
+	--matture-warning-color: unset;
+
+	&__content {
+		// Content sits underneath the overlay.
+	}
+
+	&__overlay {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		// Smooth fade + visibility transition so overlay is removed from a11y tree.
+		transition: opacity 0.35s ease, visibility 0.35s ease;
+		visibility: visible;
+		z-index: 10;
+	}
+
+	&__warning {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 16px;
+		padding: 24px 32px;
+		text-align: center;
+	}
+
+	&__icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		svg {
+			width: 32px;
+			height: 32px;
+		}
+	}
+
+	&__label {
+		font-size: 1rem;
+		font-weight: 600;
+		line-height: 1.4;
+	}
+
+	&__reveal-btn {
+		padding: 8px 20px;
+		border: 2px solid var(--matture-button-color, currentColor);
+		border-radius: 4px;
+		background: var(--matture-button-bg, transparent);
+		color: var(--matture-button-color, currentColor);
+		cursor: pointer;
+		font-size: 0.9rem;
+		font-weight: 600;
+		transition: background 0.2s, color 0.2s;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.2);
+		}
+
+		&:focus-visible {
+			outline: 2px solid currentColor;
+			outline-offset: 3px;
+		}
+	}
+
+	// Revealed state — smooth fade + hide from a11y tree.
+	&.is-revealed {
+		.matture-gate__overlay {
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+		}
+
+		.matture-gate__content {
+			filter: none !important;
+		}
+	}
+
+	// Re-hide button (shown after reveal if allowRehide=true).
+	&__rehide-btn {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		padding: 4px 10px;
+		font-size: 0.75rem;
+		background: rgba(0, 0, 0, 0.5);
+		color: #fff;
+		border: none;
+		border-radius: 3px;
+		cursor: pointer;
+		z-index: 11;
+		display: none;
+	}
+
+	&.is-revealed .matture-gate__rehide-btn {
+		display: block;
+	}
+
+	// === NSFW MODE ===
+	&--nsfw {
+		.matture-gate__overlay {
+			background: var(--matture-overlay-bg, rgba(180, 0, 0, 0.85));
+			color: var(--matture-warning-color, #fff);
+		}
+
+		.matture-gate__content {
+			filter: blur(var(--matture-blur-intensity, var(--matture-blur, 30px))) saturate(0) brightness(0.5);
+		}
+	}
+
+	// === MATURE MODE ===
+	&--mature {
+		.matture-gate__overlay {
+			background: var(--matture-overlay-bg, rgba(20, 20, 20, 0.92));
+			color: var(--matture-warning-color, #fff);
+		}
+
+		.matture-gate__content {
+			filter: blur(var(--matture-blur-intensity, var(--matture-blur, 30px))) brightness(0.4);
+		}
+	}
+
+	// === SPOILER MODE ===
+	&--spoiler {
+		.matture-gate__overlay {
+			background: var(--matture-overlay-bg, rgba(88, 101, 242, 0.85));
+			color: var(--matture-warning-color, #fff);
+		}
+
+		.matture-gate__content {
+			filter: blur(var(--matture-blur-intensity, var(--matture-blur, 20px)));
+		}
+	}
+
+	// === TRIGGER WARNING MODE ===
+	&--trigger {
+		.matture-gate__overlay {
+			background: var(--matture-overlay-bg, rgba(240, 240, 240, 0.92));
+			color: var(--matture-warning-color, #333);
+			border: 2px solid var(--matture-border-color, #ccc);
+		}
+
+		.matture-gate__content {
+			filter: grayscale(0.5) blur(2px);
+		}
+	}
+}

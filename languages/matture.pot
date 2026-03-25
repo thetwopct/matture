@@ -1,0 +1,180 @@
+# Copyright (C) 2026 James Hunt
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Matture 1.0.0\n"
+"Report-Msgid-Bugs-To: https://www.thetwopercent.co.uk\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-03-23T06:25:37+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: matture\n"
+
+#. Plugin Name of the plugin
+#: matture.php
+msgid "Matture"
+msgstr ""
+
+#. Description of the plugin
+#: matture.php
+msgid "Gate any content behind a tap-to-reveal overlay. Five modes: NSFW, Mature, Spoiler, Trigger Warning, and Classified."
+msgstr ""
+
+#. Author of the plugin
+#: matture.php
+msgid "James Hunt"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:98
+msgid "Gate Settings"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:102
+msgid "Mode"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:108
+msgid "Warning Label"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:114
+msgid "Leave blank to use the default label for the selected mode."
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:120
+msgid "Reveal Button Label"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:126
+msgid "Leave blank to use the default button text for this mode."
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:132
+msgid "Sub-label"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:134
+msgid "Optional secondary text below the warning"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:141
+msgid "Optional secondary text displayed below the main warning label."
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:148
+msgid "Blur Intensity"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:159
+msgid "Allow Re-hide"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:164
+msgid "Show a button to re-hide content after it has been revealed."
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:170
+msgid "Remember Reveal"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:175
+msgid "Use localStorage to remember that the user has revealed this content."
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:181
+msgid "Show Mode Icon"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:186
+msgid "Display an icon alongside the warning label."
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:193
+msgid "Appearance"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:200
+msgid "Overlay Color"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:206
+msgid "Text Color"
+msgstr ""
+
+#: blocks/content-gate/build/index.js:1
+#: blocks/content-gate/edit.js:243
+msgid "Reveal"
+msgstr ""
+
+#: blocks/content-gate/block.json
+msgctxt "block title"
+msgid "Content Gate"
+msgstr ""
+
+#: blocks/content-gate/block.json
+msgctxt "block description"
+msgid "Gate any content behind a tap-to-reveal overlay. Supports NSFW, Mature, Spoiler, Trigger Warning, and Classified modes."
+msgstr ""
+
+#: blocks/content-gate/block.json
+msgctxt "block keyword"
+msgid "mature"
+msgstr ""
+
+#: blocks/content-gate/block.json
+msgctxt "block keyword"
+msgid "nsfw"
+msgstr ""
+
+#: blocks/content-gate/block.json
+msgctxt "block keyword"
+msgid "spoiler"
+msgstr ""
+
+#: blocks/content-gate/block.json
+msgctxt "block keyword"
+msgid "trigger"
+msgstr ""
+
+#: blocks/content-gate/block.json
+msgctxt "block keyword"
+msgid "gate"
+msgstr ""
+
+#: blocks/content-gate/block.json
+msgctxt "block keyword"
+msgid "blur"
+msgstr ""
+
+#: blocks/content-gate/block.json
+msgctxt "block keyword"
+msgid "overlay"
+msgstr ""
+
+#: blocks/content-gate/block.json
+msgctxt "block keyword"
+msgid "reveal"
+msgstr ""

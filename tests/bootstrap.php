@@ -1,10 +1,10 @@
-<?php
+<?php // phpcs:ignore Squiz.Commenting.FileComment.Missing
 /**
  * PHPUnit bootstrap file.
  *
- * @package           plugin-name
- * @author            YMMV LLC
- * @copyright         2024 YMMV LLC
+ * @package           matture
+ * @author            James Hunt
+ * @copyright         2024 James Hunt
  * @license           GPL-2.0-or-later
  */
 
@@ -24,7 +24,7 @@ require_once "{$_tests_dir}/includes/functions.php";
  * Manually load the plugin being tested.
  */
 function _manually_load_plugin() {
-	require dirname( __DIR__ ) . '/plugin-name.php';
+	require dirname( __DIR__ ) . '/matture.php';
 }
 
 /** @phpstan-ignore function.notFound */ // phpcs:ignore

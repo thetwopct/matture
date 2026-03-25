@@ -1,0 +1,49 @@
+// Editor-only styles for the Content Gate block.
+// The overlay is semi-transparent so inner blocks remain editable.
+
+.matture-gate {
+	// Ensure the block has minimum height in editor so overlay is visible.
+	min-height: 120px;
+
+	// Dashed border so editors can see the block boundary.
+	border: 1px dashed rgba(0, 0, 0, 0.25);
+	border-radius: 2px;
+
+	&__overlay--editor {
+		// Semi-transparent so content below is still clickable/editable.
+		opacity: 0.75;
+		pointer-events: none; // Don't block editor clicks on inner blocks.
+		position: relative; // Needed to position the mode badge within.
+	}
+
+	&__content--editor {
+		// Show content normally in editor (not filtered).
+		filter: none !important;
+	}
+
+	&__mode-badge {
+		position: absolute;
+		top: 10px;
+		left: 12px;
+		padding: 3px 10px;
+		border-radius: 12px;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		background: rgba(255, 255, 255, 0.18);
+		border: 1px solid rgba(255, 255, 255, 0.35);
+		pointer-events: none;
+	}
+
+	&__reveal-btn--preview {
+		display: inline-block;
+		padding: 8px 20px;
+		border: 2px solid currentColor;
+		border-radius: 4px;
+		background: transparent;
+		font-size: 0.9rem;
+		font-weight: 600;
+		cursor: default;
+		pointer-events: none;
+	}
+}

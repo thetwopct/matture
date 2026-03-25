@@ -25,7 +25,7 @@
 
 - Follow WordPress naming conventions
 - Use namespaces for PHP classes (PSR-4)
-- Class files: PascalCase (e.g., `PluginName.php`)
+- Class files: PascalCase (e.g., `Matture.php`)
 - Hook names: lowercase with underscores (`plugin_name_action`)
 - Function names: CamelCase (e.g., `pluginNameAction`)
 - Constants: uppercase with underscores (e.g., `PLUGIN_NAME_CONSTANT`) (Sometimes the plugin name is abbreviated, look at existing CONSTANTS to be sure)
@@ -76,10 +76,10 @@ Example:
 /**
  * Class Admin_Page
  *
- * @package PluginName
+ * @package Matture
  * @since 1.0.0
  */
-namespace PluginName\Admin;
+namespace Matture\Admin;
 
 class Admin_Page {
     /**
@@ -155,6 +155,6 @@ The environment this plugin is developed under uses WP-ENV to launch the plugin 
 If running CLI commands, these must be run like this:
 
 ```
-wp-env run cli --env-cwd=wp-content/plugins/plugin-name wp config get
+wp-env run cli --env-cwd=wp-content/plugins/matture wp config get
 ```
 

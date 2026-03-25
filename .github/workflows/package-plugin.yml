@@ -34,18 +34,18 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      PLUGIN_MAIN_FILE: plugin-name.php
-      PLUGIN_NAME: plugin-name
+      PLUGIN_MAIN_FILE: matture.php
+      PLUGIN_NAME: matture
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
         sparse-checkout: |
+          blocks
           includes
           languages
-          views
-          plugin-name.php
+          matture.php
           readme.txt
 
     - name: Lint readme.txt
@@ -71,7 +71,7 @@ jobs:
 
     - name: Copy necessary files
       run: |
-        cp -R includes languages views "$PLUGIN_MAIN_FILE" readme.txt "releases/$PLUGIN_NAME"
+        cp -R blocks includes languages "$PLUGIN_MAIN_FILE" readme.txt "releases/$PLUGIN_NAME"
 
     - name: Upload release artifact
       uses: actions/upload-artifact@v4

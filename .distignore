@@ -1,16 +1,12 @@
+# Dev tooling / IDE
 .cursor/
 .cursorignore
-.distignore
 .DS_Store
 .editorconfig
 .env
 .eslintcache
 .eslintignore
 .eslintrc.js
-.git
-.github
-.gitignore
-.gitkeep
 .npm
 .phpcs.xml.dist
 .phpunit.cache/
@@ -20,37 +16,56 @@
 *.code-workspace
 *.log
 *.tgz
+
+# Git / CI
+.distignore
+.git
+.github
+.gitignore
+.gitkeep
 /.git
 /.github
 /.idea
 /.phpunit.cache
 /.ssh
+
+# WordPress.org assets (deployed separately to SVN /assets/, not bundled)
 /.wordpress-org
-/backups
-/docs
-/marketing
-/node_modules
-/readme.md
-/releases
-/tests
-/utils
-/vendor
+
+# Project-specific dev/ops files
+AGENTS.md
 build-plugin.sh
-composer.json
-composer.lock
-coverage
-docs
 gulpfile.js
-node_modules
-npm-debug.log*
-package-lock.json
-package.json
 phpcs.xml
 phpstan.dist.neon
 phpunit.xml.dist
-readme.md
+
+# Dependency managers (not distributed)
+composer.json
+composer.lock
+package.json
+package-lock.json
+yarn-debug.log*
+yarn-error.log*
+
+# Directories not distributed
+/backups
+/blocks/content-gate/node_modules
+/docs
+/marketing
+/node_modules
+/releases
+/src
+/tests
+/utils
+/vendor
+coverage
+docs
+node_modules
 src
 tests
 vendor
-yarn-debug.log*
-yarn-error.log*
+
+# Markdown docs (readme.txt is the canonical WP.org readme)
+/readme.md
+readme.md
