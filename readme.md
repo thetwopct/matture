@@ -10,6 +10,8 @@ Matture is a WordPress Gutenberg block that wraps any content — images, text, 
 
 Made as part of PluginJam Blockathon — Theme: Reveal.
 
+![Matture screenshot](.wordpress-org/screenshot-2.png)
+
 ## Features
 
 ### Four reveal modes
